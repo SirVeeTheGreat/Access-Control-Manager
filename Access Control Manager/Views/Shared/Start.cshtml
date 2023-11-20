@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Start";
+    Layout = "_AppLayout";
+}
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<p>Ensure that you verify all devices carried by Student,Stuff and Visitors before letting them in.<br/> When a Student Checks-out, Ensure they are carrying the devices listed in the Slip or email</p>
+
+<h6 class="mt-3">Operations</h6>
+<div class="mt-3">
+    <div class="check-in-option">
+        <a asp-action="CheckingIn" asp-controller="CheckingIn"><i class="fi fi-rr-enter px-3"></i>Check-in</a>
+    </div>
+    <div class="check-in-option">
+        <a asp-action="GetQrCode" asp-controller="CheckingIn"><i class="fi fi-rr-exit px-3"></i>Check-out</a>
+    </div>
+</div>
+
+

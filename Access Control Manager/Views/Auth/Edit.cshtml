@@ -1,0 +1,98 @@
+﻿@*  @model Access_Control_Manager.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Message
+        </div>
+    }
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            <form asp-action="Edit">
+                <div class="form-group">
+                    <img src="~/img/download.png" class="rounded mx-auto d-block" alt="...">
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group" hidden>
+                    <label asp-for="objectId" class="control-label"></label>
+                    <input asp-for="objectId" class="form-control" />
+                    <span asp-validation-for="objectId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" readonly/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="name" class="control-label"></label>
+                        <input asp-for="name" class="form-control" />
+                        <span asp-validation-for="name" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="surname" class="control-label"></label>
+                        <input asp-for="surname" class="form-control" />
+                        <span asp-validation-for="surname" class="text-danger"></span>
+                    </div>
+                </div>
+               
+                <div class="row mt-3">
+                    <div class="col form-group">
+                        <label asp-for="role" class="control-label"></label>
+                        <select class="form-control" asp-for="role">
+                            <option selected>Choose...</option>
+                            <option value="Assistant">Assistant</option>                            
+                            <option value="Super">Super</option>
+                        </select>
+                        <span asp-validation-for="role" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Department" class="control-label"></label>
+                        <select class="form-control" asp-for="Department">
+                            <option selected>Choose...</option>
+                            <option value="IT">IT</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Education">Education</option>
+                            <option value="Operations">Operations</option>
+                        </select>
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>               
+               
+                <div class="form-group">
+                    <label asp-for="StudentStaffNumber" class="control-label"></label>
+                    <input asp-for="StudentStaffNumber" class="form-control" />
+                    <span asp-validation-for="StudentStaffNumber" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} *@
+ 

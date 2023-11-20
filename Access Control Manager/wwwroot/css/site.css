@@ -1,0 +1,403 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.navbar-brand img {
+    height: 80px;
+    width: auto;
+}
+
+
+
+.navbar-nav .nav-item {
+    margin-right: 15px;
+}
+
+.user-initials {
+    display: flex;
+    align-items: center;
+}
+
+    .user-initials p {
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    table{
+        
+    }
+
+table caption {
+    padding: .5em 0;
+
+}
+
+table.dataTable th,
+table.dataTable td {
+    white-space: nowrap;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 10px;
+}
+
+.slider-label {
+    margin-right: 10px;
+}
+
+.slider {
+    margin: 20px;
+    -webkit-appearance: none;
+    width: 60px;
+    height: 29px;
+    background-color: #ddd;
+    border-radius: 17px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+    .slider::before {
+        content: "";
+        position: absolute;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+    }
+
+    .slider:checked {
+        background-color: #4CAF50;
+    }
+
+        .slider:checked::before {
+            transform: translateX(26px);
+        }
+
+.Add-User {
+    font-size: 15px;
+    background-color: #ddd;
+    padding: 9px;
+    color: black;
+    text-decoration : none;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+
+
+.Add-User:Hover {
+   color: black;
+}
+
+.main-form-container {
+    border-radius: 10px;
+    display: flex;
+    padding: 20px;
+    background-color: #0a5c8f;
+    justify-content: start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form-cus {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-input {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px;
+}
+
+.main-name {
+    width: 250px;
+}
+
+.main-btn {
+    padding: 10px;
+    margin: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+    .main-btn p {
+        margin: 0;
+    }
+
+.search-small {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.search-large {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.search-description {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: center;
+}
+
+    .search-description li {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+#main-submit {
+    padding: 10px;
+    margin: 5px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.fade-in {
+   
+    animation: fadeIn 2s ease-in-out;
+}
+
+.main-content-wrapper .fade-in {
+    display: grid;
+    color: wheat;
+    font-size: 12px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.user-icon {
+    font-size: 24px;
+    color: #3498db;
+}
+
+.user-info {
+    display: inline-block;
+}
+
+.welcome-header {
+    margin: 0;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.user-email {
+    margin: 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.main-content-wrapper {
+   
+    min-height: 400px;
+    min-width: 70%;
+    max-width: 70%;
+    margin: 0 auto;
+    font-size: 1.25rem;
+    background-color: #0a5c8f;
+    padding: 2rem;
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.main-content-wrapper p{
+    font-weight: 300;
+    font-size: 17px;
+    margin-bottom: 40px;
+}
+
+.main-content-wrapper .welcome-header {
+    margin: 0;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.main-content-wrapper .user-email {
+    margin: 0;
+    color: white;
+    font-size: 14px;
+}
+
+.next-btn {
+    margin-top: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+    .next-btn:hover {
+        background-color: #207bb8;
+    }
+
+
+
+.check-in-options {
+   
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.check-in-option {
+ 
+    width: 300px;
+    background-color: #f4f4;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+    .check-in-option:hover {
+        background-color: #e0e0e0;
+        color: black;
+    }
+
+    .check-in-option a {
+        text-decoration: none;
+        color: white;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .check-in-option i {
+        font-size: 1.2rem;
+        margin-right: 10px;
+    }
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+td a {
+    color: black;
+}
+
+td a i {
+    padding: 20px;
+    font-size: 25px;
+    color: black;
+}
+
+
+
+dl {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+dt {
+    font-weight: 500;
+    color: #ccc;
+    font-size: 18px;
+    margin-right: 30px; 
+}
+
+dd {
+    font-size: 14px;
+}
+
+
+dl img {
+   border-radius: 5px;
+}
+
+.scrollable-container {
+    max-height: 200px; 
+    overflow-y: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; 
+}
+
+.scrollable-container::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.scrollable-container::-webkit-scrollbar {
+    width: 12px; /* Adjust the width as needed */
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+    background-color: black; 
+    border-radius: 2px; 
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+    background-color: #f8f9fa; 
+    border-radius: 2px; 
+}
+
+
+.login-wrapper {
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding-bottom: 50px;
+}
+
+
+
+

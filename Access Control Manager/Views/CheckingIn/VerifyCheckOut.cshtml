@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Verify";
+    Layout = "_AppLayout";
+}
+
+
+@model Access_Control_Manager.Models.Student
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Details</title>
+    <style>
+
+        img {
+            max-width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<div class="col-lg-12 d-flex justify-content-center">
+    <div>
+        <h5 class="mb-2">Please Verify if the student is carrying the same devices listed below</h5>
+
+        <dl>
+            <div>
+                <dt>Student number:</dt>
+                <dd> - @Model.StudentNumber</dd>
+
+
+
+                <dt>Has a device:</dt>
+                @if (Model.HasDevice)
+                {
+                    <dd> - Yes</dd>
+                }
+                else
+                {
+
+                    <dd> - No</dd>
+                }
+
+
+                @{
+                    var date = @Model.DateRegistered.ToString("yy-MMM-dd");
+                }
+                <dt>Date Registered:</dt>
+                <dd> - @date</dd>
+
+                <dt>Check-In Date:</dt>
+                <dd> - @Model.CheckIn</dd>
+
+            </div>
+            <div>
+                <dt>Devices:</dt>
+                <dd class="scrollable-container">
+                    @if (Model.Devices != null && Model.Devices.Any())
+                    {
+                        foreach (var device in Model.Devices)
+                        {
+                            <div>Manufacture: @device.Manufacture</div>
+                            <div>Serial No: @device.SerialNumber</div>
+                            @if (device.Type != null)
+                            {
+                                <div>Device Type: @device.Type</div>
+                            }
+
+                            @if (device.Accessories != null)
+                            {
+                                <div>Accessories: @device.Accessories</div>
+                            }
+
+                            <hr style="color: #ccc" />
+                        }
+                    }
+                    else
+                    {
+                        <div> - No devices registered</div>
+                    }
+                </dd>
+
+                <dt>Unique Check-Out Code:</dt>
+                <dd class="qrcode"> - @Model.UniqueGeneratedCode</dd>
+                <dd>Check-out QR code</dd>
+
+                <dt><img src="@Model.QRCodePath" alt="QR Code"></dt>
+            </div>
+
+
+        </dl>
+        <div class="check-in-option">
+            <a asp-action="Verify" asp-controller="CheckingIn" asp-route-id="@Model.UniqueGeneratedCode"><i style="color: yellowgreen" class="fi fi-sr-checkbox px-3"></i>Verified</a>
+        </div>
+    </div>
+
+</div>
+</html>
+
+
+
+

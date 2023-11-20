@@ -1,0 +1,57 @@
+﻿@model Access_Control_Manager.Models.Login
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+@{
+    ViewData["Title"] = "Login";
+
+}
+
+<div class="container mt-5 login-wrapper">
+   
+    <div class="row mt-5">
+        <div class="col-sm">
+        </div>
+        <div class="col-lg-8 p-4">
+            <form asp-action="Login" asp-controller="Auth">
+                <div class="form-group d-flex justify-content-center">
+                        <h3 class="m-1">Access Control Portal</h3>
+                </div>
+                 @if (TempData["Message"] != null)
+                    {
+                <div class="alert alert-danger fade-in" role="alert">
+                   
+                        @TempData["Message"]
+                   
+                </div>
+                    }
+                <div asp-validation-summary="All" class="text-danger m-2"></div>
+                <div class="form-group mb-3">
+
+                    <label for="exampleInputEmail1"><i class="fi fi-sr-user px-3"></i>Username</label>
+                    <input type="email" class="form-control form-control-lg" asp-for="Email" aria-describedby="emailHelp" placeholder="Enter EmailAddress">                  
+                </div>
+                <div class="form-group mb-2" >
+                    <label for="exampleInputPassword1"><i class="fi fi-rr-key px-3"></i>Password</label>
+                    <input type="password" class="form-control form-control-lg" asp-for="Password" placeholder="Password">
+                </div>
+                
+                 <div class="d-flex justify-content-start w-100">
+                     <button type="submit" class="btn btn-primary mt-2">Login</button>
+                 </div>
+             
+            </form>
+
+           
+        </div>
+        <div class="col-sm">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

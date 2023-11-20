@@ -1,0 +1,25 @@
+﻿
+
+@{
+    ViewData["Title"] = "Options";
+    Layout = "_AppLayout";
+}
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+
+<div class="check-in-options">
+    <h6></h6>
+    @if (ViewBag.DisableBtn == null)
+    {
+        <div class="check-in-option">
+            <a asp-action="AddDevices" asp-route-id="@ViewBag.Id"><i class="fi fi-rr-laptop-mobile px-3"></i>Add Another Device</a>
+        </div>
+    }
+    <div class="check-in-option">
+        <a asp-action="Summary" asp-route-id="@ViewBag.Id"><i class="fi fi-rr-qrcode px-3"></i>Generate QR code</a>
+    </div>
+</div>
+

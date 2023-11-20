@@ -1,0 +1,181 @@
+﻿@using System.Security.Claims;
+@model  PaginatedList<Access_Control_Manager.Models.User>
+
+
+
+
+
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+
+@{
+    ViewData["Title"] = "To Rent";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+
+<h5 class="mt-5"><i class="fi fi-rr-user-shield px-3"></i>Manage System Users</h5>
+
+<div class="nav-item user-initials mt-5">
+    <i class="fi fi-tr-circle-user px-3 user-icon"></i>
+    <div class="user-info">
+        <h6 class="welcome-header">Welcome</h6>
+        <p class="user-email">@User.FindFirst(ClaimTypes.Email)?.Value</p>
+    </div>
+</div>
+
+
+
+<div class="container mt-3">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success fade-in" role="alert">
+            <i class="fi fi-sr-comment-check px-3" style="color: yellowgreen; font-size: 20px"></i> @TempData["Message"]
+        </div>
+    }
+
+    <div class="row">
+
+
+        <div class="main-form-container mb-3">
+            <form id="" class="d-flex justify-content-lg-start" role="search" asp-action="SuperUserHome" method="post">
+                <select name="searchBy" class="form-select w-50 form-select-sm" aria-label="Small select example">
+                    <option selected>Search By</option>
+                    <option value="staffNumber">By Staff Or Student Number</option>                  
+                    <option value="name">By User Name</option>
+                </select>              
+                  <input class="form-control me-2" name="seacrhQuery" type="search" value="@TempData["SearchQuery"]" placeholder="Search by email" aria-label="Search">
+                  <button class="btn btn-primary" type="submit">Search</button>          
+            </form>
+            <div>
+                <a asp-action="SignUp" asp-controller="Auth" class="Add-User"><i class="fi fi-rr-user-add px-2"></i>Add user</a>
+            </div>
+           
+        </div>
+    </div>
+
+   
+        <div class="col-xs-12">
+            <table id="userTable" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>User Email</th>
+                        <th>User Name</th>
+                        <th>User Surname</th>
+                        <th>Role</th>
+                        <th>Stuff Or Student Num</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                        @if (item.Email != @User.FindFirst(ClaimTypes.Email)?.Value)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Surname)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Role)</td>
+                                <td>@Html.DisplayFor(modelItem => item.StudentStaffNumber)</td>
+                                <td>
+                                    <a><i class="fi fi-rr-user-pen"></i></a>
+
+                                    @if (item.AccountStatus == 1)
+                                    {
+                                        <div class="slider-container">
+                                            <label class="slider-label">Disable Account</label>
+                                            <label class="switch">
+                                                <input type="checkbox" class="slider" id="accountSwitch" checked="checked" onchange="changeAccountStatus('@item.Email', 'disable')">
+                                            </label>
+                                            <label class="slider-label">Enable Account</label>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="slider-container">
+                                            <label class="slider-label">Disable Account</label>
+                                            <label class="switch">
+                                                <input type="checkbox" class="slider" id="accountSwitch" onchange="changeAccountStatus('@item.Email', 'enable')">
+                                            </label>
+                                            <label class="slider-label">Enable Account</label>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                        
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="p-3 badge badge-info">No Records Found Or Your Account as been disabled</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+<div class="d-flex justify-content-end col-lg-12 mt-5">
+    <div class="ml-auto">
+        <p class="text-muted">Page @(Model.PageIndex ) of @(Model.TotalPages)</p>
+    </div>
+    <div class="d-flex">
+        @if (prevDisabled != "disabled")
+        {
+            <a asp-action="SuperUserHome"
+               asp-route-pageNumber="@(Model.PageIndex - 1)"
+               class="m-1 next-btn">
+                Previous
+            </a>
+        }
+       
+        @if (nextDisabled != "disabled")
+        {
+            <a asp-action="SuperUserHome"
+               asp-route-pageNumber="@(Model.PageIndex + 1)"
+               class="m-1 next-btn">
+                Next
+            </a>
+        }
+    </div>
+
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#userTable').DataTable({
+            "pagingType": "full_numbers",
+            "searching": true,
+            "ordering": true,
+            "info": true
+        });
+    });
+
+    function changeAccountStatus(email, mode) {
+        var url = mode === 'enable' ? '@Url.Action("EnableAccount", "Home")' : '@Url.Action("DisableAccount", "Home")';
+   
+        url += '?id=' + email;
+    
+        window.location.href = url;
+    }
+</script>

@@ -1,0 +1,31 @@
+﻿@model Access_Control_Manager.Models.Student
+
+
+@{
+    ViewData["Title"] = "GenerateQrCode";
+    Layout = "_AppLayout";
+}
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#qr" data-id='@Model.UniqueGeneratedCode'>
+    View QR Code
+</button>
+
+<div class="modal-content" id="qrcode">
+</div>
+<input type="button" data-bs-dismiss="modal" onclick="printDiv('printableArea')" class="btn btn-primary" value="print" />
+
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "@Model.UniqueGeneratedCode");
+
+    function printDiv(divId) {
+        var printContents = document.getElementById(divId).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>

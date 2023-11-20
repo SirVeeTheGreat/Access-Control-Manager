@@ -1,0 +1,101 @@
+﻿@model Access_Control_Manager.Models.SignUp
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<div class="container">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @TempData["Message"]
+        </div>
+    }
+    <div class="row mt-5">
+        <div class="col">
+        </div>
+        <div class="col-6">
+            <form asp-action="SignUp" asp-controller="Auth" method="post">
+                <div class="form-group mb-5">
+                    <h5><i class="fi fi-sr-user-add px-3"></i>Add User</h5>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="Name" class="control-label"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="Surname" class="control-label"></label>
+                        <input asp-for="Surname" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label asp-for="Role" class="control-label"></label>
+                        <select class="form-control" asp-for="Role">
+                            <option selected>Select Role</option>
+                            <option value="Assistant">Assistant</option>                            
+                            <option value="Super">Super</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <div class="col form-group">
+                        <label asp-for="Department" class="control-label"></label>
+                        <select class="form-control" asp-for="Department">
+                            <option selected>Select Department</option>
+                            <option value="IT">IT</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Education">Education</option>
+                            <option value="Operations">Operations</option>
+                            <option value="Protection Services">Protection Services</option>
+                        </select>
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col form-group">
+                    <label asp-for="CampusId" class="control-label"></label>
+                    <select class="form-control" name="Id" asp-for="CampusId" asp-items="@ViewBag.Campus">
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentStaffNumber" class="control-label"></label>
+                    <input asp-for="StudentStaffNumber" class="form-control" />
+                    <span asp-validation-for="StudentStaffNumber" class="text-danger"></span>
+                </div>
+             
+               
+                <div class="form-group mt-3">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

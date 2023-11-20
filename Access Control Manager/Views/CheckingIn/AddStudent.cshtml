@@ -1,0 +1,58 @@
+﻿@model Access_Control_Manager.Models.Student
+
+@{
+    ViewData["Title"] = "Check-in Student";
+    Layout = "_AppLayout";
+}
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<div class="col-12 d-flex justify-content-center">
+   
+    <form asp-action="AddStudent" asp-controller="CheckingIn" method="post">
+       
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label class="control-label mb-3">Enter Student Number</label>
+            <input asp-for="StudentNumber" required placeholder="Type here..." class="form-control"/>
+            <span asp-validation-for="StudentNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <p class="mt-3">Does the student have a device? <small style="font-size: 12px">(e.g laptop, mouse)</small></p>
+            <div class="form-check">
+                <input asp-for="HasDevice" class="form-check-input" required type="checkbox" value="true" id="flexCheckYes">
+                <label class="form-check-label" for="flexCheckYes">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check">
+                <input asp-for="HasDevice" class="form-check-input" required type="checkbox" value="false" id="flexCheckNo">
+                <label class="form-check-label" for="flexCheckNo">
+                    No
+                </label>
+            </div>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="next-btn">Done</button>
+        </div>
+    </form>
+</div>
+<script>
+    document.getElementById("flexCheckYes").addEventListener("change", function () {
+        var noCheckbox = document.getElementById("flexCheckNo");
+
+       
+        noCheckbox.disabled = this.checked;
+    });
+
+    document.getElementById("flexCheckNo").addEventListener("change", function () {
+        var noCheckbox = document.getElementById("flexCheckYes");
+
+        
+        noCheckbox.disabled = this.checked;
+    });
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

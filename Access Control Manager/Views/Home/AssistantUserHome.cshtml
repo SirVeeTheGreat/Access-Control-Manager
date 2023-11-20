@@ -1,0 +1,35 @@
+﻿@using System.Security.Claims;
+
+
+@model IEnumerable<Access_Control_Manager.Models.Campus>
+@{
+    ViewData["Title"] = "AssistantUserHome";
+    
+}
+
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+
+
+<div class="container mt-3">
+    <div class="mb-3 row">
+        <div class="d-flex justify-content-center">
+           
+            <div class=" main-content-wrapper">
+                
+                <div class="nav-item user-initials mb-5">
+                    <i class="fi fi-tr-circle-user px-3 user-icon"></i>
+                    <div class="user-info">
+                        <h6 class="welcome-header">Welcome</h6>
+                        <p class="user-email">@User.FindFirst(ClaimTypes.Email)?.Value</p>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+
+

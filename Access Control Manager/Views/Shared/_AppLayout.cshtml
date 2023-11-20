@@ -1,0 +1,121 @@
+﻿@using System.Security.Claims;
+@inject IHttpContextAccessor HttpContextAccessor;
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - Access Control</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-straight/css/uicons-bold-straight.css' />
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-straight/css/uicons-solid-straight.css
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light box-shadow">
+            <div class="container-fluid d-flex justify-content-between">
+                <a class="navbar-brand" href="#">
+                    <img src="~/img/download.png" class="rounded" alt="Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("AccessRight") != null && HttpContextAccessor.HttpContext.Session.GetString("AccessRight") == "Super")
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SuperUserHome">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="SuperUserHome">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Lab" asp-action="Index">Labs Management</a>
+                                </li>
+                            }
+                          
+
+
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="container mt-3">
+                <div class="mb-3 row">
+                    <div class="d-flex justify-content-center">
+           
+                        <div class=" main-content-wrapper">
+                            <div class="d-flex justify-content-between">
+                                <div class="nav-item user-initials mb-5">
+                                
+                                    <i class="fi fi-tr-circle-user px-3 user-icon"></i>
+                                    <div class="user-info">
+                                        <h6 class="welcome-header">Welcome</h6>
+                                        <p class="user-email">@User.FindFirst(ClaimTypes.Email)?.Value</p>
+                                    </div>
+                                </div>
+                                <a class="nav-link" style="color: white" asp-action="Menu" asp-controller="CheckingIn"><i class="fi fi-rr-house-blank"></i></a>
+
+                               <a class="nav-link" style="color: white" asp-controller="Auth" asp-action="Logout"><i class="fi fi-bs-exit"></i></a>
+                               
+                            </div>
+                           
+                            <div class="d-flex justify-content-center">
+                                @if (TempData["Error"] != null)
+                                {
+                                    <div class="fade-in p-3" role="alert">
+                                        <i class="fi fi-sr-exclamation" style="color: red; font-size: 20px"></i> @TempData["Error"]
+                                    </div>
+                                }
+                                @if (TempData["Success"] != null)
+                                {
+                                    <div class="fade-in p-3" role="alert">
+                                        <i class="fi fi-br-check" style="color: yellowgreen; font-size: 20px"></i> @TempData["Success"]
+                                    </div>
+                                }
+                            </div>
+                           
+                            <div>
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://api.backendless.com/sdk/js/latest/backendless.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

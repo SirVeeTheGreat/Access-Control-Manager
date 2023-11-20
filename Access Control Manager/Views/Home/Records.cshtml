@@ -1,0 +1,104 @@
+﻿@model PaginatedList<Access_Control_Manager.Models.StudentRecord>
+
+@{
+    ViewData["Title"] = "To Rent";
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Student Record Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="main-content-wrapper mt-5">
+        <h2 class="px-5">Student Records</h2>
+        
+        @foreach (var item in Model)
+        {
+            <hr style="color: #ccc"/>
+            <dl class="d-flex justify-content-evenly">
+                <div>
+                    <dt class="col-sm-3">Student Number</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => item.StudentNumber)</dd>
+                    <dt class="col-sm-3">CUT Campus</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => item.Campus)</dd>
+
+                    <dt class="col-sm-3">Accessed Campus</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => item.AccessedCampus)</dd>
+
+
+                    <dt class="col-sm-3">Time Out</dt>
+                    <dd class="col-sm-9">@Html.DisplayFor(model => item.TimeOut)</dd>
+                </div>
+                <div>
+                    <hr style="color: #ccc"/>
+                    <dt class="col-sm-3">Device Records</dt>
+                    <dd class="col-sm-9 scrollable-container">
+                        @if (item.DeviceRecords != null && item.DeviceRecords.Any())
+                        {
+                            <ul class="list-unstyled">
+                                @foreach (var deviceRecord in item.DeviceRecords)
+                                {
+
+                                    <hr style="color: #ccc"/>
+                                    <li>
+                                        <strong>Manufacture:</strong> @Html.DisplayFor(model => deviceRecord.Manufacture) <br/>
+                                        <strong>Model:</strong> @Html.DisplayFor(model => deviceRecord.Model) <br/>
+                                        <strong>Serial Number:</strong> @Html.DisplayFor(model => deviceRecord.SerialNumber) <br/>
+                                        <strong>Type:</strong> @Html.DisplayFor(model => deviceRecord.Type) <br/>
+                                        <strong>Accessories:</strong> @Html.DisplayFor(model => deviceRecord.Accessories) <br/>
+                                        <strong>Created:</strong> @Html.DisplayFor(model => deviceRecord.Created)
+                                    </li>
+                                    <hr style="color: #ccc"/>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No device records found.</p>
+                        }
+                    </dd>
+                    <hr style="color: #ccc"/>
+                    <div class="d-flex justify-content-end col-lg-12 mt-5">
+                        <div class="ml-auto text-white">
+                            <p class="text-white">Page @(Model.PageIndex ) of @(Model.TotalPages)</p>
+                        </div>
+                        <div class="d-flex">
+                            @if (prevDisabled != "disabled")
+                            {
+                                <a asp-action="Records"
+                                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                                   class="m-1 text-white next-btn">
+                                    Previous
+                                </a>
+                            }
+                           
+                            @if (nextDisabled != "disabled")
+                            {
+                                <a asp-action="Records"
+                                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                                   class="m-1 text-white next-btn">
+                                    Next
+                                </a>
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+            </dl>
+            
+        }
+
+       
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+
