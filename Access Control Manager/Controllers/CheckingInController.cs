@@ -307,7 +307,7 @@ namespace Access_Control_Manager.Controllers
                                         </html>
                                     ";
 
-            var apiKey = "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";
+            var apiKey = "";
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress("support@therentalguy.co.za", "Central University of Technology");
             var subject = "CUT ACCESS SLIP";
